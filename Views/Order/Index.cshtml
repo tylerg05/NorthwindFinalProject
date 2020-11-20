@@ -1,1 +1,21 @@
-﻿Hello world!
+﻿@using Northwind.Models
+@model IEnumerable<Category>
+
+<div id="User" style="display:none;" data-email="@User.Identity.Name" data-customer="@User.IsInRole("Employee")"></div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col" class="text-right">Order Id</th>
+            <th scope="col" class="text-right">Order Date</th>
+            <th scope="col" class="text-right">Required Date</th>
+            <th scope="col" class="text-right">Shipped Date</th>
+        </tr>
+    </thead>
+    <tbody id="order_rows" data-id="@ViewBag.id">
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script src="../../js/order.js"></script>
+}
