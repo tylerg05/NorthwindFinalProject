@@ -7,7 +7,7 @@ namespace Northwind.Models
 {
     public class Order
     {
-        public int ProductId { get; set; }
+        public int OrderId { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime RequiredDate { get; set; }
         public DateTime ShippedDate { get; set; }
