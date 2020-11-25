@@ -39,7 +39,8 @@ namespace Northwind.Controllers
 
         [HttpGet, Route("api/order")]
         // returns all orders
-        public IEnumerable<Order> GetOrder() => repository.Orders.OrderBy(p => p.OrderId);
+        //public IEnumerable<Order> GetOrder() => repository.Orders.OrderBy(p => p.OrderId);
+        public IEnumerable<Order> GetOrders() => repository.Orders.OrderBy(p => p.OrderId);
 
         [HttpGet, Route("api/order/{id}")]
         // returns specific order
