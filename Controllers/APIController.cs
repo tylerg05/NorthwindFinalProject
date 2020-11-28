@@ -39,18 +39,16 @@ namespace Northwind.Controllers
 
 
         [HttpGet, Route("api/order")]
-        // returns all orders
+        // returns all shipped orders
         //public IEnumerable<Order> GetOrder() => repository.Orders.OrderBy(p => p.OrderId);
-        public IEnumerable<Order> GetOrders() => repository.Orders.OrderBy(p => p.OrderId);
+        public IEnumerable<Order> GetOrders() => repository.Orders.Where(p => p.ShippedDate != null).OrderBy(p => p.OrderId);
 
         [HttpGet, Route("api/order/{id}")]
         // returns specific order
         public Order GetOrder(int id) => repository.Orders.FirstOrDefault(p => p.OrderId == id);
 
-        [HttpGet, Route("api/order/shipregion")]
-        public IEnumerable<Order> GetAllShippingRegion() => repository.Orders.Where(p => p.ShipRegion == "BC");
-
-        [HttpGet, Route("api/order/shippeddate")]
+        [HttpGet, Route("api/order/unshipped")]
+        // returns all unshipped orders
         public IEnumerable<Order> GetUnshippedOrders(DateTime? shipped) => repository.Orders.Where(p => p.ShippedDate == null).OrderBy(p => p.OrderId);
     }
 }

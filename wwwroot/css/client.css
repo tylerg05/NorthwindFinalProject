@@ -29,3 +29,8 @@
 #order_rows tr {
     cursor: pointer;
 }
+
+.unshipped {
+    opacity: .5;
+    color: #c79187;
+}
