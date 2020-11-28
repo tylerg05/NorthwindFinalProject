@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Northwind.Models;
@@ -45,5 +46,11 @@ namespace Northwind.Controllers
         [HttpGet, Route("api/order/{id}")]
         // returns specific order
         public Order GetOrder(int id) => repository.Orders.FirstOrDefault(p => p.OrderId == id);
+
+        [HttpGet, Route("api/order/shipregion")]
+        public IEnumerable<Order> GetAllShippingRegion() => repository.Orders.Where(p => p.ShipRegion == "BC");
+
+        [HttpGet, Route("api/order/shippeddate")]
+        public IEnumerable<Order> GetUnshippedOrders(DateTime? shipped) => repository.Orders.Where(p => p.ShippedDate == null).OrderBy(p => p.OrderId);
     }
 }
