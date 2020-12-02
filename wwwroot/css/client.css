@@ -26,11 +26,14 @@
     cursor: pointer;
 }
 
-#order_rows tr {
-    cursor: pointer;
-}
-
 .unshipped {
     opacity: .5;
-    background-color: #c79187;
+    color: red;
+    font-weight: bold;
+}
+
+.overdue {
+    opacity: .5;
+    color: darkorange;
+    font-weight: bold;
 }
