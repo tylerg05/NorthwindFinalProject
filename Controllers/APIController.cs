@@ -43,12 +43,16 @@ namespace Northwind.Controllers
         //public IEnumerable<Order> GetOrder() => repository.Orders.OrderBy(p => p.OrderId);
         public IEnumerable<Order> GetOrders() => repository.Orders.Where(p => p.ShippedDate != null).OrderBy(p => p.OrderId);
 
+        [HttpGet, Route("api/order/unshipped")]
+        // returns all unshipped orders
+        public IEnumerable<Order> GetUnshippedOrders(DateTime? shipped) => repository.Orders.Where(p => p.ShippedDate == null).OrderBy(p => p.OrderId);
+
         [HttpGet, Route("api/order/{id}")]
         // returns specific order
         public Order GetOrder(int id) => repository.Orders.FirstOrDefault(p => p.OrderId == id);
 
-        [HttpGet, Route("api/order/unshipped")]
-        // returns all unshipped orders
-        public IEnumerable<Order> GetUnshippedOrders(DateTime? shipped) => repository.Orders.Where(p => p.ShippedDate == null).OrderBy(p => p.OrderId);
+        [HttpGet, Route("api/order/{id}/unshipped")]
+        // returns specific order
+        public IEnumerable<Order> GetUnshippedOrder(DateTime? shipped) => repository.Orders.Where(p => p.ShippedDate == null && p.ShippedDate == null).OrderBy(p => p.OrderId);
     }
 }
